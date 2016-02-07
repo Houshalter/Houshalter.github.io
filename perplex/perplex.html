@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Perplexity Game!</title>
+ 
+<!-- CSS goes here -->
+<style>
+body {
+  background-color: #888888; /* example... */
+}
+
+#CodeArea {
+	font-family: monospace;
+	min-height: 300px;
+	white-space: pre;
+}
+
+span.g {
+	background-color:#00FF00;
+}
+
+span.r {
+	background-color:#FF0000;
+}
+div.myText {
+	max-width: 50ch;
+}
+
+#score {
+	color:#FFFFFF
+}
+</style>
+ 
+
+</head>
+ 
+ <div class='myText'>
+ Perplexity: <span id='score'>Unknown!</span>
+ <BR>
+ Lower perplexity is better.
+ <BR>
+ Perplexity measures how many incorrect characters you guess for every correct one. n perplexity is equivalent to a dice with n sides, where each is a character, and only one is correct. In other words, it means you can narrow the number of possible characters down to about n, on average.
+ <BR>
+ <BR>
+ Language name:<input id='language' type="text" size=10 value="JavaScript"><BR>
+ Extension:<input id='extension' type="text" size=3 value="js">
+ <button onclick="newLanguage()">Load New Document</button>
+</div>
+ 
+ <BR>
+ <BR>
+
+<div id="CodeArea" tabindex="0">
+Loading, please wait...
+<BR>
+</div>
+</body>
+<script type="text/javascript" src='githubScrape.js'></script>
+<script type="text/javascript" src='perplex.js'></script>
+</html>
