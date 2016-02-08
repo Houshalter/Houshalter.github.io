@@ -1,8 +1,9 @@
 /*TODO:
 	skipline feature!
-	process text to remove carriage returns
-	replace tabs with spaces (how many?)
-	ignore backspace?
+	ignore backspace
+Done:
+	+process text to remove carriage returns
+	+replace tabs with spaces (how many?)
 */
 
 var depth = 3;
@@ -20,7 +21,9 @@ codeArea.focus();
 
 function keypressed(x){
 	if (text.length > 0){
+		//nextChar is the next character text
 		var nextChar = text.slice(0,1);
+		//removes the first character from text
 		text = text.slice(1);
 		
 		var c = (x.charCode == nextChar.charCodeAt(0)) ? 'g' : 'r';
@@ -44,6 +47,13 @@ function keypressed(x){
 	}
 };
 
+function processDoc(text){
+	//remove carriage returns and replace tabs with spaces
+	text = text.replace(/\r/, '');
+	text = text.replace(/\t/, '    ');
+	return text
+}
+
 function newLanguage(){
 	codeArea.innerHTML = 'Loading, please wait...';
 	language = document.getElementById("language").value;
@@ -57,9 +67,8 @@ function newLanguage(){
 		if (Object.keys(activeList).length > 0 || (fileList.length < 1)){
 			window.setTimeout(temp, 500);
 		} else {
-			//console.log("getting random file");
 			getRandFile(function(t){
-				text = t;
+				text = processDoc(t);
 				codeArea.innerHTML = 'Type Here!<BR>';
 			});
 		}
