@@ -34,7 +34,7 @@ function keypressed(x){
 		perplexity = total/correct;
 		score.innerHTML = perplexity.toFixed(3);
 		
-		//console.log(x.charCode);
+		console.log(x.charCode);
 	}
 };
 
