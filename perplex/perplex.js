@@ -1,18 +1,23 @@
+/*TODO:
+	skipline feature!
+	process text to remove carriage returns
+	replace tabs with spaces (how many?)
+	ignore backspace?
+*/
+
 var depth = 3;
-var language
-var langExt
+var language;
+var langExt;
+var text = '';
+var correct = 0;
+var total = 0;
+var perplexity = 'Unknown!';
 
 var codeArea = document.getElementById('CodeArea');
 var score = document.getElementById('score');
 codeArea.focus();
-var text = "";
-
-//https://api.github.com/search/repositories?q=language:JavaScript&sort=stars
 
 
-var correct = 0;
-var total = 0;
-var perplexity = 'Unknown!';
 function keypressed(x){
 	if (text.length > 0){
 		var nextChar = text.slice(0,1);
