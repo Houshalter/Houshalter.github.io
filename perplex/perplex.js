@@ -1,6 +1,6 @@
 /*TODO:
 	skipline feature!
-	ignore backspace
+	ignore backspace?
 Done:
 	+process text to remove carriage returns
 	+replace tabs with spaces (how many?)
@@ -13,6 +13,7 @@ var text = '';
 var correct = 0;
 var total = 0;
 var perplexity = 'Unknown!';
+lastChar = '\n';
 
 var codeArea = document.getElementById('CodeArea');
 var score = document.getElementById('score');
@@ -30,29 +31,37 @@ function keypressed(x){
 		var nextChar = text.slice(0,1);
 		//removes the first character from text
 		text = text.slice(1);
+		//the actual HTML to be inserted
+		var nextHTML = nextChar;
 		
 		var c = (x.charCode == nextChar.charCodeAt(0)) ? 'g' : 'r';
 		
 		if (nextChar=='\n'){
-			nextChar = '\u2936<BR>';
+			nextHTML = '\u2936<BR>';
 			if (x.charCode == 13)
 				c = 'g';
 		}
 		if (c=='g')
 			correct++
 		
-		var insert = '<span class='+c+'>'+nextChar+'</span>';
+		var insert = '<span class='+c+'>'+nextHTML+'</span>';
 		codeArea.innerHTML = codeArea.innerHTML+insert;
 		
 		total++;
 		perplexity = total/correct;
 		score.innerHTML = perplexity.toFixed(3);
 		
-	        console.log(x.charCode);
-	        digramPeekArray = digramTable[nextChar];
-	        update_table();
+		console.log(x.charCode);
+		digramPeekArray = digramTable[nextChar];
+		update_table();
+		
+		lastChar = nextChar;
 	}
 };
+
+function skipLine(){
+	console.log("Not Yet Implemented!");
+}
 
 function processDoc(text){
 	//remove carriage returns and replace tabs with spaces
