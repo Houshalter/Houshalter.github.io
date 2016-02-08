@@ -23,14 +23,15 @@ function keypressed(x){
 		var nextChar = text.slice(0,1);
 		text = text.slice(1);
 		
-		var c;
-		if (x.charCode == nextChar.charCodeAt(0)){
-			c = 'g';
-			correct++;
-		} else {
-			c = 'r';
+		var c = (x.charCode == nextChar.charCodeAt(0)) ? 'g' : 'r';
+		
+		if (nextChar=='\n'){
+			nextChar = '\u2936<BR>';
+			if (x.charCode == 13)
+				c = 'g';
 		}
-		nextChar = (nextChar=='\n')?'\u2936<BR>':nextChar;
+		if (c=='g')
+			correct++
 		
 		var insert = '<span class='+c+'>'+nextChar+'</span>';
 		codeArea.innerHTML = codeArea.innerHTML+insert;
