@@ -1,11 +1,21 @@
+/*TODO:
+	skipline feature!
+	process text to remove carriage returns
+	replace tabs with spaces (how many?)
+	ignore backspace?
+*/
+
 var depth = 3;
-var language
-var langExt
+var language;
+var langExt;
+var text = '';
+var correct = 0;
+var total = 0;
+var perplexity = 'Unknown!';
 
 var codeArea = document.getElementById('CodeArea');
 var score = document.getElementById('score');
 codeArea.focus();
-var text = "";
 
 var digramPeekArray = [null, null, null, null, null]
 var digramPeekTable = document.getElementById('digram-table');
@@ -13,23 +23,20 @@ var digramTable = {}
 
 //https://api.github.com/search/repositories?q=language:JavaScript&sort=stars
 
-
-var correct = 0;
-var total = 0;
-var perplexity = 'Unknown!';
 function keypressed(x){
 	if (text.length > 0){
 		var nextChar = text.slice(0,1);
 		text = text.slice(1);
 		
-		var c;
-		if (x.charCode == nextChar.charCodeAt(0)){
-			c = 'g';
-			correct++;
-		} else {
-			c = 'r';
+		var c = (x.charCode == nextChar.charCodeAt(0)) ? 'g' : 'r';
+		
+		if (nextChar=='\n'){
+			nextChar = '\u2936<BR>';
+			if (x.charCode == 13)
+				c = 'g';
 		}
-		nextChar = (nextChar=='\n')?'\u2936<BR>':nextChar;
+		if (c=='g')
+			correct++
 		
 		var insert = '<span class='+c+'>'+nextChar+'</span>';
 		codeArea.innerHTML = codeArea.innerHTML+insert;
