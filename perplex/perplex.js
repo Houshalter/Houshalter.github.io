@@ -1,9 +1,6 @@
 /*TODO:
 	skipline feature!
 	ignore backspace?
-Done:
-	+process text to remove carriage returns
-	+replace tabs with spaces (how many?)
 */
 
 var depth = 3;
@@ -23,8 +20,6 @@ var digramPeekArray = [null, null, null, null, null]
 var digramPeekTable = document.getElementById('digram-table');
 var digramTable = {}
 
-//https://api.github.com/search/repositories?q=language:JavaScript&sort=stars
-
 function keypressed(x){
 	if (text.length > 0){
 		//nextChar is the next character text
@@ -33,16 +28,17 @@ function keypressed(x){
 		text = text.slice(1);
 		//the actual HTML to be inserted
 		var nextHTML = nextChar;
+		//replace "Enter" with "newline"
+		if (x.charCode == 13)
+			x.charCode = 10;
 		
 		var c = (x.charCode == nextChar.charCodeAt(0)) ? 'g' : 'r';
 		
-		if (nextChar=='\n'){
-			nextHTML = '\u2936<BR>';
-			if (x.charCode == 13)
-				c = 'g';
-		}
+		if (nextChar=='\n')
+			nextHTML = '\u2936\n';
+		
 		if (c=='g')
-			correct++
+			correct++;
 		
 		var insert = '<span class='+c+'>'+nextHTML+'</span>';
 		codeArea.innerHTML = codeArea.innerHTML+insert;
@@ -51,13 +47,17 @@ function keypressed(x){
 		perplexity = total/correct;
 		score.innerHTML = perplexity.toFixed(3);
 		
-		console.log(x.charCode);
+		//console.log(x.charCode);
 		digramPeekArray = digramTable[nextChar];
-		update_table();
+		//update_table();
 		
 		lastChar = nextChar;
 	}
 };
+
+function writeCharacters(){
+	
+}
 
 function skipLine(){
 	console.log("Not Yet Implemented!");
