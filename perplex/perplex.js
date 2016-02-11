@@ -1,6 +1,6 @@
 /*TODO:
 	skipline feature!
-	ignore backspace?
+	test on other browsers!!!
 */
 
 var depth = 3;
@@ -35,8 +35,7 @@ function keypressed(x){
 		
 		var c = (charCode == nextChar.charCodeAt(0)) ? 'g' : 'r';
 		
-		if (nextChar=='\n')
-			nextHTML = '\u2936\n';
+		nextHTML = nextHTML.replace('\n', '\u2936\n');
 		
 		if (c=='g')
 			correct++;
@@ -131,11 +130,12 @@ function update_table(last_char, digram_peek_array){
 		var element = document.getElementById('digram'+i);
 		var d = digram_peek_array[i];
 		if (d){
-			element.innerHTML = last_char + d[0] + ' ' + ((d[1] / sum) * 100).toFixed(0)+'%';
+			var digram = last_char + d[0];
+			digram = digram.replace(' ', '█').replace('\n', '\u2936');
+			element.innerHTML =  digram + ' ' + ((d[1] / sum) * 100).toFixed(0)+'%';
 		} else {
 			element.innerHTML = '';
 		}
-		
 	}
 }
 
