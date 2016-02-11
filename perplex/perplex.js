@@ -33,7 +33,7 @@ function keypressed(x){
 		if (charCode == 13)
 			charCode = 10;
 		
-		var c = (x.charCode == nextChar.charCodeAt(0)) ? 'g' : 'r';
+		var c = (charCode == nextChar.charCodeAt(0)) ? 'g' : 'r';
 		
 		if (nextChar=='\n')
 			nextHTML = '\u2936\n';
@@ -48,7 +48,7 @@ function keypressed(x){
 		perplexity = total/correct;
 		score.innerHTML = perplexity.toFixed(3);
 		
-		//console.log(x.charCode);
+		//console.log(charCode);
 		digramPeekArray = digramTable[nextChar];
 		//update_table();
 		
