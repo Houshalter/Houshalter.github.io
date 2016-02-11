@@ -26,7 +26,6 @@ function keypressed(x){
 		var nextChar = text.slice(0,1);
 		
 		var charCode = x.charCode;
-		console.log(charCode);
 		
 		//replace "Enter" with "newline"
 		if (charCode == 13)
@@ -92,6 +91,7 @@ function newLanguage(){
 				text = processDoc(t);
 				codeArea.innerHTML = 'Type Here!\n';
 				digramTable = populateDigramTable(text, {});
+				codeArea.focus();
 			});
 		}
 	}
