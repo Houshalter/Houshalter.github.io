@@ -26,6 +26,8 @@ function keypressed(x){
 		var nextChar = text.slice(0,1);
 		
 		var charCode = x.charCode;
+		console.log(charCode);
+		
 		//replace "Enter" with "newline"
 		if (charCode == 13)
 			charCode = 10;
@@ -126,6 +128,7 @@ function compare(a, b) {
 }
 
 function update_table(last_char, digram_peek_array){
+	if (!digram_peek_array){return;}
 	var sum = 0;
     for (index in digram_peek_array) {
 		sum += digram_peek_array[index][1];
@@ -148,11 +151,14 @@ function update_table(last_char, digram_peek_array){
 //prevents backspace behavior
 //needs to be tested on other browsers!
 codeArea.onkeydown = function (e) {
-	if ((e.keyCode==8) &&
+	if ((e.keyCode==8 || e.keyCode == 9) &&
 		(e.target.tagName != "TEXTAREA") && 
 		(e.target.tagName != "INPUT")) {
-		e.stopPropagation();
-		return false;
+			if (e.keyCode == 9){
+				skipLine()
+			}
+			//e.stopPropagation();
+			return false;
 	}
 };
 
