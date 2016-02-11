@@ -1,5 +1,9 @@
 body {
-  background-color: #888888; /* example... */
+  background-color: #888888;
+}
+
+#score {
+	color:#FFFFFF
 }
 
 #CodeArea {
@@ -15,10 +19,20 @@ span.g {
 span.r {
 	background-color:#FF0000;
 }
-div.myText {
+
+#top {
 	max-width: 75ch;
 }
 
-#score {
-	color:#FFFFFF
+#sidebar {
+	float: left;
+    display: flex;
+    border: solid 1px black;
+    padding: 5px;
+    min-width: 50px;
+    font-family: monospace;
+}
+
+#right-side {
+    margin-left: 75px;
 }

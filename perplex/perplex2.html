@@ -1,0 +1,50 @@
+<html>
+<head>
+  <title>Perplexity Game!</title>
+  <link href="perplex.css" rel="stylesheet">
+  <meta charset="utf-8">
+</head>
+<body>
+  <div id="sidebar">
+    <div id="file-info">
+    </div>
+    <div id="chunk-info">
+    </div>
+    <div id="digram-table">
+      <p id="digram-one"> </p>
+      <p id="digram-two"> </p>
+      <p id="digram-three"> </p>
+      <p id="digram-four"> </p>
+      <p id="digram-five"> </p>
+    </div>
+  </div>
+  <div id="right-side">
+  <div class='myText'>
+    Perplexity: <span id='score'>Unknown!</span>
+    <BR>
+    Lower perplexity is better.
+    <BR>
+    Perplexity measures how many incorrect characters you guess for every correct one. n perplexity is equivalent to a dice with n sides, where each is a character, and only one is correct. In other words, it means you can narrow the number of possible characters down to about n, on average.
+    <BR>
+    Credit to namespace for the idea. <a href='https://github.com/Houshalter/Houshalter.github.io/tree/master/perplex'>Code available here.</a> MIT License. Feel free to modify!
+    <BR>
+    <BR>
+    Language name:<input id='language' type="text" size=10 value="JavaScript"><BR>
+    Extension:<input id='extension' type="text" size=3 value="js">
+    <button onclick="newLanguage()">Load New Document</button>
+  </div>
+ 
+  <BR>
+  <BR>
+  <div id="name">
+
+  </div>
+  <div id="CodeArea" tabindex="0">
+    Loading, please wait...
+    <BR>
+  </div>
+  </div>
+</body>
+<script type="text/javascript" src='githubScrape.js'></script>
+<script type="text/javascript" src='perplex.js'></script>
+</html>
