@@ -139,6 +139,16 @@ function update_table(last_char, digram_peek_array){
 	}
 }
 
+//prevents backspace behavior
+//needs to be tested on other browsers!
+codeArea.onkeydown = function (e) {
+	if ((e.keyCode==8) &&
+		(e.target.tagName != "TEXTAREA") && 
+		(e.target.tagName != "INPUT")) {
+		e.stopPropagation();
+		return false;
+	}
+};
 
 	
 newLanguage();
