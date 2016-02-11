@@ -12,6 +12,10 @@ body {
 	white-space: pre;
 }
 
+#time {
+	width = 3ch;
+}
+
 .g {
 	background-color:#00FF00;
 }

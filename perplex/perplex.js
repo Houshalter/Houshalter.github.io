@@ -11,9 +11,12 @@ var correct = 0;
 var total = 0;
 var perplexity = 'Unknown!';
 var lastChar = '\n';
+var timer;
 
 var codeArea = document.getElementById('CodeArea');
 var score = document.getElementById('score');
+var checkBox = document.getElementById('timerCheck');
+var timeInput = document.getElementById('time');
 codeArea.focus();
 
 var digramPeekTable = document.getElementById('digram-table');
@@ -21,6 +24,7 @@ var digramTable = {};
 
 function keypressed(x){
 	x.preventDefault();
+	timerCheck()
 	if (text.length > 0){
 		//nextChar is the next character text
 		var nextChar = text.slice(0,1);
@@ -36,7 +40,7 @@ function keypressed(x){
 		if (c=='g')
 			correct++;
 		
-		writeCharacter(c)
+		writeCharacter(c);
 		
 		total++;
 		perplexity = total/correct;
@@ -155,13 +159,38 @@ codeArea.onkeydown = function (e) {
 		(e.target.tagName != "TEXTAREA") && 
 		(e.target.tagName != "INPUT")) {
 			if (e.keyCode == 9){
-				skipLine()
+				skipLine();
 			}
 			//e.stopPropagation();
 			return false;
 	}
 };
 
+function ding(){
+	if (text.length > 0){
+		var c = (digramTable[lastChar][0][0] == text.slice(0,1)) ? 'g' : 'r';
+		if (c == 'g')
+			correct++;
+		writeCharacter(c);
+		total++;
+		perplexity = total/correct;
+		score.innerHTML = perplexity.toFixed(3);
+	}
+	startTimer();
+}
+
+function startTimer(){
+	timer = setTimeout(ding, timeInput.value*1000);
+}
+
+function timerCheck(){
+	clearTimeout(timer);
+	if (checkBox.checked){
+		startTimer();
+	}
+}
+
 	
 newLanguage();
 codeArea.onkeypress = keypressed;
+timerCheck();
