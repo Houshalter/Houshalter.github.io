@@ -24,10 +24,7 @@ function keypressed(x){
 	if (text.length > 0){
 		//nextChar is the next character text
 		var nextChar = text.slice(0,1);
-		//removes the first character from text
-		text = text.slice(1);
-		//the actual HTML to be inserted
-		var nextHTML = nextChar;
+		
 		var charCode = x.charCode;
 		//replace "Enter" with "newline"
 		if (charCode == 13)
@@ -35,27 +32,30 @@ function keypressed(x){
 		
 		var c = (charCode == nextChar.charCodeAt(0)) ? 'g' : 'r';
 		
-		nextHTML = nextHTML.replace('\n', '\u2936\n');
-		
 		if (c=='g')
 			correct++;
 		
-		var insert = '<span class='+c+'>'+nextHTML+'</span>';
-		codeArea.innerHTML = codeArea.innerHTML+insert;
+		writeCharacter(c)
 		
 		total++;
 		perplexity = total/correct;
 		score.innerHTML = perplexity.toFixed(3);
-		
-		lastChar = nextChar;
-		nextChar = text.slice(0,1);
-		digramPeekArray = digramTable[lastChar];
-		update_table(lastChar, digramPeekArray);
 	}
 };
 
-function writeCharacters(){
+function writeCharacter(c){
+	var nextChar = text.slice(0,1);
+	text = text.slice(1);
+	var nextHTML = nextChar;
 	
+	nextHTML = nextHTML.replace('\n', '\u2936\n');
+	
+	var insert = '<span class='+c+'>'+nextHTML+'</span>';
+	codeArea.innerHTML = codeArea.innerHTML+insert;
+	
+	lastChar = nextChar;
+	digramPeekArray = digramTable[lastChar];
+	update_table(lastChar, digramPeekArray);
 }
 
 function skipLine(){
@@ -130,11 +130,13 @@ function update_table(last_char, digram_peek_array){
 		var element = document.getElementById('digram'+i);
 		var d = digram_peek_array[i];
 		if (d){
-			var digram = last_char + d[0];
+			//var digram = last_char + d[0];
+			var digram = d[0];
 			digram = digram.replace(' ', '█').replace('\n', '\u2936');
-			element.innerHTML =  digram + ' ' + ((d[1] / sum) * 100).toFixed(0)+'%';
+			var percent = ((d[1] / sum) * 100).toFixed(0)
+			element.innerHTML =  digram + ' ' + percent +'%';
 		} else {
-			element.innerHTML = '';
+			element.innerHTML = '<BR>';
 		}
 	}
 }

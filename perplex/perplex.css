@@ -12,12 +12,16 @@ body {
 	white-space: pre;
 }
 
-span.g {
+.g {
 	background-color:#00FF00;
 }
 
-span.r {
+.r {
 	background-color:#FF0000;
+}
+
+.y {
+	background-color:#FFFF00;
 }
 
 #top {
