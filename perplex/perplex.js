@@ -28,9 +28,10 @@ function keypressed(x){
 		text = text.slice(1);
 		//the actual HTML to be inserted
 		var nextHTML = nextChar;
+		var charCode = x.charCode;
 		//replace "Enter" with "newline"
-		if (x.charCode == 13)
-			x.charCode = 10;
+		if (charCode == 13)
+			charCode = 10;
 		
 		var c = (x.charCode == nextChar.charCodeAt(0)) ? 'g' : 'r';
 		
