@@ -45,7 +45,7 @@ function keypressed(x){
 		total++;
 		perplexity = total/correct;
 		score.innerHTML = perplexity.toFixed(3);
-		timerCheck()
+		timerCheck();
 	}
 };
 
@@ -196,4 +196,4 @@ function timerCheck(){
 	
 newLanguage();
 codeArea.onkeypress = keypressed;
-timerCheck();
+//timerCheck();
