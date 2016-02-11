@@ -24,7 +24,7 @@ var digramTable = {};
 
 function keypressed(x){
 	x.preventDefault();
-	timerCheck()
+	clearTimeout(timer);
 	if (text.length > 0){
 		//nextChar is the next character text
 		var nextChar = text.slice(0,1);
@@ -45,6 +45,7 @@ function keypressed(x){
 		total++;
 		perplexity = total/correct;
 		score.innerHTML = perplexity.toFixed(3);
+		timerCheck()
 	}
 };
 
@@ -64,11 +65,13 @@ function writeCharacter(c){
 }
 
 function skipLine(){
+	clearTimeout(timer)
 	while(text.length > 2 && text.slice(0,1) != '\n'){
 		writeCharacter('y');
 	}
 	writeCharacter('y');
 	codeArea.focus();
+	timerCheck()
 }
 
 function processDoc(text){
