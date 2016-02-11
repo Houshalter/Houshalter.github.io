@@ -59,7 +59,11 @@ function writeCharacter(c){
 }
 
 function skipLine(){
-	console.log("Not Yet Implemented!");
+	while(text.length > 2 && text.slice(0,1) != '\n'){
+		writeCharacter('y');
+	}
+	writeCharacter('y');
+	codeArea.focus();
 }
 
 function processDoc(text){
