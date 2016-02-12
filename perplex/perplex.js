@@ -76,8 +76,8 @@ function skipLine(){
 
 function processDoc(text){
 	//remove carriage returns and replace tabs with spaces
-	text = text.replace(/\r/, '');
-	text = text.replace(/\t/, '    ');
+	text = text.split('\r').join('');
+	text = text.split('\t').join('    ');
 	return text;
 }
 
